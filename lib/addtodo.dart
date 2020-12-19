@@ -30,7 +30,7 @@ class AddTodoState extends State<AddTodo> {
 
     return WillPopScope(
         onWillPop: () {
-          moveToLastScreen();
+          move();
         },
         child: Scaffold(
           appBar: AppBar(
@@ -38,7 +38,7 @@ class AddTodoState extends State<AddTodo> {
             leading: IconButton(
                 icon: Icon(Icons.arrow_back),
                 onPressed: () {
-                  moveToLastScreen();
+                  move();
                 }),
           ),
           body: Padding(
@@ -72,7 +72,6 @@ class AddTodoState extends State<AddTodo> {
                           ),
                           onPressed: () {
                             setState(() {
-                              debugPrint("ADD");
                               _save();
                             });
                           },
@@ -91,7 +90,6 @@ class AddTodoState extends State<AddTodo> {
                           ),
                           onPressed: () {
                             setState(() {
-                              debugPrint("Delete ");
                               _delete();
                             });
                           },
@@ -106,7 +104,7 @@ class AddTodoState extends State<AddTodo> {
         ));
   }
 
-  void moveToLastScreen() {
+  void move() {
     Navigator.pop(context, true);
   }
 
@@ -115,7 +113,7 @@ class AddTodoState extends State<AddTodo> {
   }
 
   void _save() async {
-    moveToLastScreen();
+    move();
 
     int result;
     if (todo.id != null) {
@@ -132,7 +130,7 @@ class AddTodoState extends State<AddTodo> {
   }
 
   void _delete() async {
-    moveToLastScreen();
+    move();
 
     if (todo.id == null) {
       _showAlertDialog('Status', 'No Note was deleted');
