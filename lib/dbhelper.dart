@@ -12,7 +12,7 @@ class DatabaseHelper {
   String colId = 'id';
   String colName = 'name';
 
-  bool colIsComplele;
+  String colIsComplele = 'isComplete';
 
   DatabaseHelper._createInstance();
 
@@ -42,7 +42,7 @@ class DatabaseHelper {
   void _createDb(Database db, int newVersion) async {
     await db.execute(
         'CREATE TABLE $todoTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colName TEXT,'
-        '$colIsComplele INTEGER )');
+        '$colIsComplele BOOLEAN )');
   }
 
   Future<List<Map<String, dynamic>>> getTodoMapList() async {

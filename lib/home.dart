@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fultter_db3/addtodo.dart';
+import 'addtodo.dart';
 import 'package:fultter_db3/dbhelper.dart';
 import 'package:fultter_db3/todo.dart';
 import 'package:sqflite/sqflite.dart';
