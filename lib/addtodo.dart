@@ -19,6 +19,7 @@ class AddTodoState extends State<AddTodo> {
 
   String appBarTitle;
   Todo todo;
+  bool isComplete = false;
 
   TextEditingController titleController = TextEditingController();
 
@@ -58,6 +59,13 @@ class AddTodoState extends State<AddTodo> {
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.0))),
                   ),
+                ),
+                Checkbox(
+                  value: isComplete,
+                  onChanged: (value) {
+                    this.isComplete = value;
+                    setState(() {});
+                  },
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 8.0, bottom: 15.0),
