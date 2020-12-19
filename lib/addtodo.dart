@@ -29,6 +29,7 @@ class AddTodoState extends State<AddTodo> {
     titleController.text = todo.name;
 
     return WillPopScope(
+        // ignore: missing_return
         onWillPop: () {
           move();
         },
