@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fultter_db3/dbhelper.dart';
-import 'package:fultter_db3/todo.dart';
+import 'dbhelper.dart';
+import 'todo.dart';
 
 class AddTodo extends StatefulWidget {
   final String appBarTitle;
@@ -73,7 +73,7 @@ class AddTodoState extends State<AddTodo> {
                     children: <Widget>[
                       Expanded(
                         child: RaisedButton(
-                          color: Colors.amber,
+                          color: Colors.blue,
                           textColor: Colors.white,
                           child: Text(
                             'ADD',
@@ -81,6 +81,7 @@ class AddTodoState extends State<AddTodo> {
                           ),
                           onPressed: () {
                             setState(() {
+                              debugPrint("Save button clicked");
                               _save();
                             });
                           },
@@ -91,14 +92,16 @@ class AddTodoState extends State<AddTodo> {
                       ),
                       Expanded(
                         child: RaisedButton(
-                          color: Colors.amber,
-                          textColor: Colors.black,
+                          color: Colors.blue,
+                          textColor: Colors.white,
                           child: Text(
                             'Delete',
                             textScaleFactor: 1.5,
                           ),
                           onPressed: () {
                             setState(() {
+                              debugPrint("Delete button clicked");
+
                               _delete();
                             });
                           },

@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'dart:async';
-import 'package:fultter_db3/todo.dart';
+import 'todo.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -48,7 +48,17 @@ class DatabaseHelper {
   Future<List<Map<String, dynamic>>> getTodoMapList() async {
     Database db = await this.database;
 
-    var result = await db.query(todoTable, orderBy: '$colId ASC');
+    var result = await db.query(todoTable);
+    return result;
+  }
+
+  Future<List<Map<String, dynamic>>> getTodMapIsComplete() async {
+    Database db = await this.database;
+
+    var result = await db.query(
+      todoTable,
+      where: "$colIsComplele= ?",
+    );
     return result;
   }
 
@@ -85,7 +95,7 @@ class DatabaseHelper {
     int count = todoMapList.length;
 
     List<Todo> todoList = List<Todo>();
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < count - 1; i++) {
       todoList.add(Todo.fromMapObject(todoMapList[i]));
     }
 
