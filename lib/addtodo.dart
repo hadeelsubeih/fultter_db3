@@ -68,7 +68,7 @@ class AddTodoState extends State<AddTodo> {
                   },
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 8.0, bottom: 15.0),
+                  padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
                   child: Row(
                     children: <Widget>[
                       Expanded(
@@ -81,28 +81,8 @@ class AddTodoState extends State<AddTodo> {
                           ),
                           onPressed: () {
                             setState(() {
-                              debugPrint("Save button clicked");
+                              debugPrint("add");
                               _save();
-                            });
-                          },
-                        ),
-                      ),
-                      Container(
-                        width: 5.0,
-                      ),
-                      Expanded(
-                        child: RaisedButton(
-                          color: Colors.blue,
-                          textColor: Colors.white,
-                          child: Text(
-                            'Delete',
-                            textScaleFactor: 1.5,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              debugPrint("Delete button clicked");
-
-                              _delete();
                             });
                           },
                         ),
@@ -135,25 +115,9 @@ class AddTodoState extends State<AddTodo> {
     }
 
     if (result != 0) {
-      _showAlertDialog('Status', ' Saved Successfully');
+      _showAlertDialog('Status', ' ADD Successfully');
     } else {
-      _showAlertDialog('Status', ' Not Saved Successfully');
-    }
-  }
-
-  void _delete() async {
-    move();
-
-    if (todo.id == null) {
-      _showAlertDialog('Status', 'No Note was deleted');
-      return;
-    }
-
-    int result = await helper.deleteTodo(todo.id);
-    if (result != 0) {
-      _showAlertDialog('Status', ' Deleted Successfully');
-    } else {
-      _showAlertDialog('Status', ' Not Deleted Successfully');
+      _showAlertDialog('Status', ' Not ADD Successfully');
     }
   }
 

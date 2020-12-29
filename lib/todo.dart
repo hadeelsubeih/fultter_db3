@@ -44,4 +44,6 @@ class Todo {
     this.name = map['name'];
     this.isComplete = map['isComplete'] == 0 ? false : true;
   }
+
+  toList() {}
 }

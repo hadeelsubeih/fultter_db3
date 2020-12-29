@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:splashscreen/splashscreen.dart';
 import 'package:sqflite/sqlite_api.dart';
 
 import 'addtodo.dart';
@@ -9,16 +11,33 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Tabpar(User('hadeel sh', 'hadeelsh@gmai.com')),
+      title: 'Splash Screen',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Splash2(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class Splash2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SplashScreen(
+      seconds: 6,
+      navigateAfterSeconds: new Tabpar(User('hadeelsh', 'hadeelsh4@gmail.com')),
+      title: new Text(
+        'TODO',
+        textScaleFactor: 2,
+      ),
+      loadingText: Text("Loading"),
+      photoSize: 100.0,
+      loaderColor: Colors.blue,
     );
   }
 }
@@ -61,7 +80,7 @@ class _TabparState extends State<Tabpar> with SingleTickerProviderStateMixin {
             Navigator.push(context, MaterialPageRoute(
               // ignore: missing_return
               builder: (context) {
-                navigateToDetail(Todo(isComplete: false, name: ''), 'Add ');
+                navigateToDetail(Todo(isComplete: true, name: ''), 'Add ');
               },
             ));
           },
@@ -152,6 +171,10 @@ class _TabparState extends State<Tabpar> with SingleTickerProviderStateMixin {
                 _delete(context, todoList[position]);
               },
             ),
+            title: Center(
+                child: Text(
+              this.todoList[position].title,
+            )),
             trailing: Checkbox(
                 value: isComplete,
                 activeColor: Colors.blue,
