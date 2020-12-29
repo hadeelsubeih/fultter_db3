@@ -46,4 +46,6 @@ class Todo {
   }
 
   toList() {}
+
+  void toggleCompleted() {}
 }

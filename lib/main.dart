@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fultter_db3/app_provider.dart';
+import 'package:fultter_db3/tasklist.dart';
+import 'package:provider/provider.dart';
 
 import 'package:splashscreen/splashscreen.dart';
 import 'package:sqflite/sqlite_api.dart';
@@ -52,6 +55,10 @@ class Tabpar extends StatefulWidget {
 
 class _TabparState extends State<Tabpar> with SingleTickerProviderStateMixin {
   TabController tabController;
+
+  Todo get todo => null;
+
+  Todo get task => null;
 
   @override
   void initState() {
@@ -169,6 +176,8 @@ class _TabparState extends State<Tabpar> with SingleTickerProviderStateMixin {
               ),
               onTap: () {
                 _delete(context, todoList[position]);
+                Provider.of<AppProvider>(context, listen: false)
+                    .deleteTodo(task);
               },
             ),
             title: Center(
@@ -179,6 +188,9 @@ class _TabparState extends State<Tabpar> with SingleTickerProviderStateMixin {
                 value: isComplete,
                 activeColor: Colors.blue,
                 onChanged: (bool newValue) {
+                  Provider.of<AppProvider>(context, listen: false)
+                      .toggleTodo(todo);
+
                   setState(() {
                     isComplete = newValue;
                   });
@@ -246,7 +258,11 @@ class _AllTaskeState extends State<AllTaske> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: SingleChildScrollView(),
+      child: Consumer<AppProvider>(
+        builder: (context, todos, child) => TaskList(
+          tasks: todos.allTasks,
+        ),
+      ),
     );
   }
 }
@@ -264,7 +280,11 @@ class _CompleteTaskeState extends State<CompleteTaske> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: SingleChildScrollView(),
+      child: Consumer<AppProvider>(
+        builder: (context, todos, child) => TaskList(
+          tasks: todos.completedTasks,
+        ),
+      ),
     );
   }
 }
@@ -282,7 +302,11 @@ class _InCompleteTaskeState extends State<InCompleteTaske> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: SingleChildScrollView(),
+      child: Consumer<AppProvider>(
+        builder: (context, todos, child) => TaskList(
+          tasks: todos.incompleteTasks,
+        ),
+      ),
     );
   }
 }
