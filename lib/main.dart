@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fultter_db3/addtodo.dart';
+import 'package:fultter_db3/app_provider.dart';
+import 'package:fultter_db3/todolist.dart';
+import 'package:provider/provider.dart';
 
 import 'package:splashscreen/splashscreen.dart';
 import 'package:sqflite/sqlite_api.dart';
@@ -14,13 +18,16 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Splash Screen',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    // ignore: missing_required_param
+    return ChangeNotifierProvider(
+      child: MaterialApp(
+        title: 'Splash Screen',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: Splash2(),
+        debugShowCheckedModeBanner: false,
       ),
-      home: Splash2(),
-      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -249,7 +256,13 @@ class AllTaske extends StatefulWidget {
 class _AllTaskeState extends State<AllTaske> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Consumer<AppProvider>(
+        builder: (context, todos, child) => TaskList(
+          tasks: todos.allTasks,
+        ),
+      ),
+    );
   }
 }
 
@@ -265,7 +278,13 @@ class _CompleteTaskeState extends State<CompleteTaske> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Consumer<AppProvider>(
+        builder: (context, todos, child) => TaskList(
+          tasks: todos.completedTasks,
+        ),
+      ),
+    );
   }
 }
 
@@ -281,7 +300,13 @@ class _InCompleteTaskeState extends State<InCompleteTaske> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Consumer<AppProvider>(
+        builder: (context, todos, child) => TaskList(
+          tasks: todos.incompleteTasks,
+        ),
+      ),
+    );
   }
 }
 

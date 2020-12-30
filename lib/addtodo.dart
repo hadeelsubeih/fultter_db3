@@ -80,6 +80,13 @@ class AddTodoState extends State<AddTodo> {
                             textScaleFactor: 1.5,
                           ),
                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    AddTodo(todo, appBarTitle),
+                              ),
+                            );
                             setState(() {
                               debugPrint("add");
                               _save();
