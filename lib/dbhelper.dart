@@ -11,6 +11,7 @@ class DatabaseHelper {
   String todoTable = 'todo_table';
   String colId = 'id';
   String colName = 'name';
+  String colDescription = 'description';
 
   String colIsComplele = 'isComplete';
 
@@ -42,6 +43,7 @@ class DatabaseHelper {
   void _createDb(Database db, int newVersion) async {
     await db.execute(
         'CREATE TABLE $todoTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colName TEXT,'
+        '$colDescription TEXT,'
         '$colIsComplele BOOLEAN )');
   }
 

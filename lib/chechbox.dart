@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fultter_db3/app_provider.dart';
 import 'package:fultter_db3/todo.dart';
 import 'package:provider/provider.dart';
 
@@ -14,9 +13,7 @@ class Task extends StatelessWidget {
     return ListTile(
       leading: Checkbox(
         value: task.isComplete,
-        onChanged: (bool checked) {
-          Provider.of<AppProvider>(context, listen: false).toggleTodo(task);
-        },
+        onChanged: (bool checked) {},
       ),
       title: Text(task.title),
       trailing: IconButton(
@@ -24,9 +21,7 @@ class Task extends StatelessWidget {
           Icons.delete,
           color: Colors.red,
         ),
-        onPressed: () {
-          Provider.of<AppProvider>(context, listen: false).deleteTodo(task);
-        },
+        onPressed: () {},
       ),
     );
   }
